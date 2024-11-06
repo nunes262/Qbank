@@ -31,4 +31,19 @@ public class UserService {
         userRepository.save(newUser);
         return true;
     }
+
+    public boolean updateProfile(String email, String newName, String newEmail, String newPassword) {
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            System.out.println("User not found.");
+            return false;
+        }
+
+        user.setName(newName != null ? newName : user.getName());
+        user.setEmail(newEmail != null ? newEmail : user.getEmail());
+        user.setPassword(newPassword != null ? newPassword : user.getPassword());
+
+        userRepository.save(user);
+        return true;
+    }
 }
