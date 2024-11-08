@@ -7,6 +7,7 @@ Funcionalidades Principais
 - Consultar Saldo: Permite visualizar o saldo atual de uma conta.
 - Transferências: Facilita a realização de transferências entre contas registradas no sistema.
 - Histórico de Transações: Exibe o histórico de todas as transações da conta, incluindo depósitos, saques e transferências.
+  
 Tecnologias Utilizadas
 Java: Linguagem principal do projeto.
 Micronaut: Framework leve para criação de microserviços, conhecido por sua inicialização rápida, baixo uso de memória e fácil integração com Java.
