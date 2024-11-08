@@ -1,24 +1,15 @@
 package com.example.Qbank.repositories;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.example.Qbank.model.User;
+import io.micronaut.data.annotation.Repository;
+import io.micronaut.data.jpa.repository.JpaRepository;
 
-public class UserRepository {
-    private Map<String, User> users = new HashMap<>();
-    private Long idCounter = 1L;
+import java.util.Optional;
 
-    public void save(User user) {
-        user = new User(idCounter++, user.getName(), user.getCpf(), user.getEmail(), user.getPassword());
-        users.put(user.getEmail(), user);
-    }
-
-    public User findByEmail(String email) {
-        return users.get(email);
-    }
-
-    public boolean existsByEmail(String email) {
-        return users.containsKey(email);
-    }
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+    
+    Optional<User> findByEmail(String email);
+    
+    boolean existsByEmail(String email);
 }
