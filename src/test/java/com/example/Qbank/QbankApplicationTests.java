@@ -1,13 +1,14 @@
 package com.example.Qbank;
 
+import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import jakarta.inject.Inject;
 
-@SpringBootTest
+@MicronautTest
 class QbankApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
-
+    @Test
+    void contextLoads() {
+        // Apenas verificando se o contexto do Micronaut é carregado sem erros
+    }
 }
