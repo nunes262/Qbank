@@ -3,17 +3,20 @@ package com.example.Qbank.services;
 import com.example.Qbank.model.User;
 import com.example.Qbank.repositories.UserRepository;
 import com.example.Qbank.validator.CPFValidator;
+import jakarta.inject.Singleton;
+import java.util.Optional;
 
+@Singleton
 public class UserService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     public boolean login(String email, String password) {
-        User user = userRepository.findByEmail(email);
-        return user != null && user.getPassword().equals(password);
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        return userOptional.isPresent() && userOptional.get().getPassword().equals(password);
     }
 
     public boolean register(String name, String cpf, String email, String password) {
@@ -27,23 +30,24 @@ public class UserService {
             return false;
         }
 
-        User newUser = new User(null, name, cpf, email, password);
+        User newUser = new User(name, cpf, email, password);
         userRepository.save(newUser);
         return true;
     }
 
     public boolean updateProfile(String email, String newName, String newEmail, String newPassword) {
-        User user = userRepository.findByEmail(email);
-        if (user == null) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if (userOptional.isEmpty()) {
             System.out.println("User not found.");
             return false;
         }
 
+        User user = userOptional.get();
         user.setName(newName != null ? newName : user.getName());
         user.setEmail(newEmail != null ? newEmail : user.getEmail());
         user.setPassword(newPassword != null ? newPassword : user.getPassword());
 
-        userRepository.save(user);
+        userRepository.update(user);
         return true;
     }
 }
