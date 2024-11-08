@@ -1,14 +1,33 @@
 package com.example.Qbank.model;
 
+import io.micronaut.core.annotation.Introspected;
+import jakarta.persistence.*;
+
+@Introspected
+@Entity
+@Table(name = "users")
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false, unique = true)
     private String cpf;
+
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
     private String password;
 
-    public User(Long id, String name, String cpf, String email, String password) {
-        this.id = id;
+    public User() {
+    }
+
+    public User(String name, String cpf, String email, String password) {
         this.name = name;
         this.cpf = cpf;
         this.email = email;
