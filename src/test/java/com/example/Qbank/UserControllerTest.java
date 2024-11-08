@@ -8,6 +8,8 @@ import org.mockito.Mockito;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.mockito.Mockito.*;
 
@@ -15,6 +17,8 @@ public class UserControllerTest {
 
     private UserService userService;
     private UserController userController;
+    private final InputStream originalIn = System.in;
+    private final PrintStream originalOut = System.out;
 
     @BeforeEach
     public void setUp() {
@@ -36,6 +40,9 @@ public class UserControllerTest {
 
         // Assert
         verify(userService, times(1)).login("test@example.com", "password");
+
+        // Restore System.in
+        System.setIn(originalIn);
     }
 
     @Test
@@ -52,5 +59,8 @@ public class UserControllerTest {
 
         // Assert
         verify(userService, times(1)).register("New User", "12345678900", "newuser@example.com", "password");
+
+        // Restore System.in
+        System.setIn(originalIn);
     }
 }
