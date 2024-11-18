@@ -12,7 +12,7 @@ public class UserRepository {
     private Long idCounter = 1L;
 
     public void save(User user) {
-        user = new User(idCounter++, user.getName(), user.getCpf(), user.getEmail(), user.getPassword());
+        user = new User(user.getName(), user.getCpf(), user.getEmail(), user.getPassword());
         users.put(user.getEmail(), user);
         accounts.put(user.getId(), new Account(user.getId())); // Cria uma conta para o usuário
     }
@@ -30,8 +30,6 @@ public class UserRepository {
     }
 }
 
-
-
 // package com.example.Qbank.repositories;
 
 // import com.example.Qbank.model.User;
@@ -42,8 +40,8 @@ public class UserRepository {
 
 // @Repository
 // public interface UserRepository extends JpaRepository<User, Long> {
-    
-//     Optional<User> findByEmail(String email);
-    
-//     boolean existsByEmail(String email);
+
+// Optional<User> findByEmail(String email);
+
+// boolean existsByEmail(String email);
 // }

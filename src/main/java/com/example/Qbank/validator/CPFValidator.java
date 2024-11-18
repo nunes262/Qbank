@@ -1,8 +1,5 @@
 package com.example.Qbank.validator;
 
-import jakarta.inject.Singleton;
-
-@Singleton
 public class CPFValidator {
 
     public boolean isValidCPF(String cpf) {
