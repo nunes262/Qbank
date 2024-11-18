@@ -100,7 +100,7 @@ public class UserServiceTest {
 
         // Assert
         assertTrue(result);
-        verify(userRepository, times(1)).save(any(User.class));
+        verify(userRepository, times(1)).save(user); // Confirm save called with actual user instance
         assertEquals("Updated Name", user.getName());
         assertEquals("updated@example.com", user.getEmail());
         assertEquals("newpassword", user.getPassword());

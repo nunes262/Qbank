@@ -1,8 +1,15 @@
 package com.example.Qbank.validator;
 
+import jakarta.inject.Singleton;
+
+@Singleton
 public class CPFValidator {
 
-    public static boolean isValidCPF(String cpf) {
+    public boolean isValidCPF(String cpf) {
+        if (cpf == null) {
+            return false;
+        }
+
         String cleanCpf = cpf.replaceAll("\\D", "");
 
         if (cleanCpf.length() != 11) {
